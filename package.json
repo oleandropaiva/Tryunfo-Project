@@ -6,6 +6,7 @@
     "node": "16"
   },
   "dependencies": {
+    "16": "0.0.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "react": "^17.0.2",
