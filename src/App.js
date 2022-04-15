@@ -3,8 +3,8 @@ import Card from './components/Card';
 import Form from './components/Form';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -20,22 +20,30 @@ class App extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.condition = this.condition.bind(this);
   }
 
   onInputChange({ target }) {
-    const valor = (target.type === 'checkbox' ? checked : target.value);
     const { name } = target;
+    const valor = (target.type === 'checkbox' ? target.checked : target.value);
 
-    this.setState({
-      cardDescription: '',
-      cardName: '',
-      cardImage: '',
-      cardRare: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '' });
+    this.setState({ [name]: valor }, () => this.condition());
+  }
 
-    this.setState({ [name]: valor });
+  onSaveButtonClick() {
+
+  }
+
+  condition() {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
 
     const min = 90;
     const max = 210;
@@ -43,7 +51,7 @@ class App extends Component {
      + Number(cardAttr2)
      + Number(cardAttr3);
 
-    console.log(cardAttr1, cardAttr2, cardAttr3);
+    /* console.log(cardAttr1, cardAttr2, cardAttr3); */
 
     const regras = [
       cardName !== '',
@@ -63,10 +71,6 @@ class App extends Component {
     this.setState({
       isSaveButtonDisabled: !isDisabled,
     });
-  }
-
-  onSaveButtonClick() {
-
   }
 
   render() {
