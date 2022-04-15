@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './form.css';
 
 class Form extends Component {
   render() {
@@ -19,7 +20,7 @@ class Form extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="form">
         <form>
           <label htmlFor="cardName">
             Nome:
@@ -50,7 +51,7 @@ class Form extends Component {
             <input
               type="number"
               name="cardAttr1"
-              id="attr1"
+              id="cardAttr1"
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
@@ -62,7 +63,7 @@ class Form extends Component {
             <input
               type="number"
               name="cardAttr2"
-              id="attr2"
+              id="cardAttr2"
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
@@ -74,7 +75,7 @@ class Form extends Component {
             <input
               type="number"
               name="cardAttr3"
-              id="attr3"
+              id="cardAttr3"
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
@@ -85,7 +86,7 @@ class Form extends Component {
             Imagem:
             <input
               type="text"
-              name="img"
+              name="cardImage"
               id="img"
               data-testid="image-input"
               value={ cardImage }
@@ -97,6 +98,7 @@ class Form extends Component {
             Raridade:
             <select
               id="rare"
+              name="cardRare"
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
