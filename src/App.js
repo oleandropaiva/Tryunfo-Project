@@ -53,9 +53,18 @@ class App extends Component {
     ];
 
     console.log(cardGame);
-    this.setState((prevState)=> ({gameShow:[...prevState.gameShow, cardGame] }));
+    this.setState((prevState) => ({ gameShow: [...prevState.gameShow, cardGame] }));
 
     console.log(gameShow);
+
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: 'normal' });
   }
 
   condition() {
