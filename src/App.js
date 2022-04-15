@@ -16,6 +16,7 @@ class App extends Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      gameShow: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -31,7 +32,30 @@ class App extends Component {
   }
 
   onSaveButtonClick() {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
 
+    const cardGame = [
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    ];
+
+    console.log(cardGame);
+    this.setState((prevState)=> ({gameShow:[...prevState.gameShow, cardGame] }));
+
+    console.log(gameShow);
   }
 
   condition() {
