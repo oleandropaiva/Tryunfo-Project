@@ -24,27 +24,38 @@ class App extends Component {
 
   onInputChange({ target }) {
     const valor = (target.type === 'checkbox' ? checked : target.value);
-    this.setState({ [target.name]: valor });
+    const { name } = target;
+
+    this.setState({
+      cardDescription: '',
+      cardName: '',
+      cardImage: '',
+      cardRare: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '' });
+
+    this.setState({ [name]: valor });
 
     const min = 90;
     const max = 210;
-    const sum = Number(cardAttr1.value)
-     + Number(cardAttr2.value)
-     + Number(cardAttr3.value);
+    const sum = Number(cardAttr1)
+     + Number(cardAttr2)
+     + Number(cardAttr3);
 
-    console.log(cardAttr1.value, cardAttr2.value, cardAttr3.value);
+    console.log(cardAttr1, cardAttr2, cardAttr3);
 
     const regras = [
       cardName !== '',
       cardDescription !== '',
       cardImage !== '',
       cardRare !== '',
-      cardAttr1.value <= min,
-      cardAttr2.value <= min,
-      cardAttr3.value <= min,
-      cardAttr1.value >= 0,
-      cardAttr2.value >= 0,
-      cardAttr3.value >= 0,
+      cardAttr1 <= min,
+      cardAttr2 <= min,
+      cardAttr3 <= min,
+      cardAttr1 >= 0,
+      cardAttr2 >= 0,
+      cardAttr3 >= 0,
       sum <= max,
     ];
 
