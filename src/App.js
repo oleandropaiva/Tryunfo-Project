@@ -61,7 +61,16 @@ class App extends Component {
       cardAttr1: 0,
       cardAttr2: 0,
       cardAttr3: 0,
-      cardRare: 'normal' });
+      cardRare: 'normal' }, () => this.verifyTrunfo());
+  }
+
+  verifyTrunfo() {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo === true) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
   }
 
   condition() {
