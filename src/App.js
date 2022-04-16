@@ -18,20 +18,19 @@ class App extends Component {
       isSaveButtonDisabled: true,
       gameShow: [],
     };
-
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
-    this.condition = this.condition.bind(this);
   }
 
-  onInputChange({ target }) {
+  onInputChange = ({ target }) => {
     const { name } = target;
     const valor = (target.type === 'checkbox' ? target.checked : target.value);
 
     this.setState({ [name]: valor }, () => this.condition());
+    if (target.type === 'checkbox') {
+      this.verifyTrunfo();
+    }
   }
 
-  onSaveButtonClick() {
+  onSaveButtonClick = () => {
     const {
       cardName,
       cardDescription,
@@ -40,9 +39,10 @@ class App extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardTrunfo,
     } = this.state;
 
-    const cardGame = [
+    const cardGame = {
       cardName,
       cardDescription,
       cardImage,
@@ -50,7 +50,8 @@ class App extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-    ];
+      cardTrunfo,
+    };
 
     this.setState((prevState) => ({ gameShow: [...prevState.gameShow, cardGame] }));
 
@@ -61,19 +62,25 @@ class App extends Component {
       cardAttr1: 0,
       cardAttr2: 0,
       cardAttr3: 0,
-      cardRare: 'normal' }, () => this.verifyTrunfo());
+      cardRare: 'normal',
+    }, () => { this.verifyTrunfo(); });
   }
 
-  verifyTrunfo() {
-    const { cardTrunfo } = this.state;
-    if (cardTrunfo === true) {
+  verifyTrunfo = () => {
+    const { gameShow } = this.state;
+    const lookTrunfoCard = gameShow.find((card) => card.cardTrunfo === true);
+    if (lookTrunfoCard !== undefined) {
       this.setState({
         hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
       });
     }
   }
 
-  condition() {
+  condition = () => {
     const {
       cardName,
       cardDescription,
@@ -86,23 +93,16 @@ class App extends Component {
 
     const min = 90;
     const max = 210;
-    const sum = Number(cardAttr1)
-     + Number(cardAttr2)
-     + Number(cardAttr3);
-
-    /* console.log(cardAttr1, cardAttr2, cardAttr3); */
+    const sum = +cardAttr1 + +cardAttr2 + +cardAttr3;
 
     const regras = [
       cardName !== '',
       cardDescription !== '',
       cardImage !== '',
       cardRare !== '',
-      cardAttr1 <= min,
-      cardAttr2 <= min,
-      cardAttr3 <= min,
-      cardAttr1 >= 0,
-      cardAttr2 >= 0,
-      cardAttr3 >= 0,
+      +cardAttr1 <= min && +cardAttr1 >= 0,
+      +cardAttr2 <= min && +cardAttr2 >= 0,
+      +cardAttr3 <= min && +cardAttr3 >= 0,
       sum <= max,
     ];
 
@@ -124,6 +124,7 @@ class App extends Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
+      gameShow,
     } = this.state;
 
     return (
@@ -153,6 +154,21 @@ class App extends Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
         />
+        {
+          gameShow.map((card, index) => (
+            <Card
+              key={ index }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+          ))
+        }
       </div>
     );
   }
