@@ -1,16 +1,13 @@
-# 🚧 README em construção 🚧
+## Habilidades desenvolvidas neste projeto:
 
-<!-- Olá, Tryber!
+- Ler o estado de um componente e usá-lo para alterar o que exibimos no browser
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+- Inicializar um componente, dando a ele um estado pré-definido
 
-É essencial que você preencha esse documento por conta própria, ok?
+- Atualizar o estado de um componente
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+- Capturar eventos utilizando a sintaxe do React
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+- Criar formulários utilizando sintaxe JSX com as tags: input, textarea, select, form, checkbox
 
--->
+- Transmitir informações de componentes filhos para componentes pais via callbacks
